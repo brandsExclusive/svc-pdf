@@ -1,5 +1,6 @@
 !.env.example
-!*.pkg
-!*.tar.xz
-!wkhtmltox
-!*.deb
+wkhtmltox
+!wkhtmltox/bin/wkhtmltopdf
+*.pkg
+*.deb
+*.tar.xz

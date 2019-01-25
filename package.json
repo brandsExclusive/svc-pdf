@@ -7,9 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/start.js",
-    "start-dev": "nodemon dist/start.js",
-    "build": "babel src --out-dir dist",
-    "build-watch": "babel src --out-dir dist --watch"
+    "dev:start": "nodemon dist/start.js",
+    "dev:build": "babel src --out-dir dist --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

@@ -17,13 +17,13 @@ which wkhtmltopdf
 In one shell watch for changes:
 
 ```
-yarn build-watch
+yarn dev:build
 ```
 
 And in another shell start the server:
 
 ```
-yarn start-dev
+yarn dev:start
 ```
 
 ## Production
@@ -31,6 +31,13 @@ yarn start-dev
 Start server:
 
 ```
-yarn build
 yarn start
+```
+
+## Deploy
+
+https://up.docs.apex.sh/#aws_credentials
+
+```
+bash deploy/deploy-jenkins.sh test
 ```

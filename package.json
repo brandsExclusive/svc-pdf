@@ -1,0 +1,24 @@
+{
+  "name": "svc-pdf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:brandsExclusive/svc-pdf.git",
+  "author": "Rufus Post <rufuspost@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/start.js",
+    "dev": "nodemon src/start.js",
+    "ci": "APP_ENV=spec yarn test && yarn js:lint",
+    "test": "APP_ENV=spec mocha \"src/**/*.test.js\" \"test/**/*.test.js\"",
+    "test:snaps": "APP_ENV=spec UPDATE=1 mocha \"src/**/*.test.js\" \"test/**/*.test.js\"",
+    "test:watch": "APP_ENV=spec mocha \"src/**/*.test.js\" \"test/**/*.test.js\" --watch",
+    "js:lint": "APP_ENV=spec standard | snazzy",
+    "js:lint-fix": "APP_ENV=spec standard --fix"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv-safe": "^6.1.0",
+    "express": "^4.16.4",
+    "wkhtmltopdf": "^0.3.4"
+  }
+}

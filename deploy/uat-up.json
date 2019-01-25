@@ -1,0 +1,12 @@
+{
+  "name": "svc-pdf-uat",
+  "profile": "up-deployer",
+  "regions": ["ap-southeast-2"],
+  "environment": {
+    "APP_ENV": "uat",
+    "WKHTMLTOPDF_COMMAND": "./wkhtmltox/bin/wkhtmltopdf"
+  },
+  "error_pages": {
+    "disable": true
+  }
+}

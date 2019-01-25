@@ -1,0 +1,12 @@
+{
+  "name": "svc-pdf-test",
+  "profile": "up-deployer",
+  "regions": ["ap-southeast-2"],
+  "environment": {
+    "APP_ENV": "test",
+    "WKHTMLTOPDF_COMMAND": "./wkhtmltox/bin/wkhtmltopdf"
+  },
+  "error_pages": {
+    "disable": true
+  }
+}

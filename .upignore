@@ -1,0 +1,5 @@
+!.env.example
+!*.pkg
+!*.tar.xz
+!wkhtmltox
+!*.deb

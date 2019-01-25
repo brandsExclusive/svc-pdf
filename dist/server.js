@@ -51,7 +51,7 @@ exports.getServer = function () {
 
   app.use(_bodyParser2.default.json());
 
-  app.get('/api/pdf/gift-card/:id', function (req, res, next) {
+  app.get('/api/pdf/gift-cards/:id', function (req, res, next) {
     var indexFile = _path2.default.resolve('./index.html');
     var app = _server2.default.renderToString(_react2.default.createElement(_App2.default, null));
     _fs2.default.readFile(indexFile, 'utf8', function (err, data) {

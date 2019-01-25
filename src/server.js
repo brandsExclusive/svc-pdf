@@ -28,7 +28,7 @@ exports.getServer = () => {
 
   app.use(bodyParser.json())
 
-  app.get('/api/pdf/gift-card/:id', (req, res, next) => {
+  app.get('/api/pdf/gift-cards/:id', (req, res, next) => {
     const indexFile = path.resolve('./index.html');
     const app = ReactDOMServer.renderToString(<App />);
     fs.readFile(indexFile, 'utf8', (err, data) => {

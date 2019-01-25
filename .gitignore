@@ -65,3 +65,4 @@ typings/
 *.tar.xz
 wkhtmltox
 *.deb
+up.json

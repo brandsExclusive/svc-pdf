@@ -14,8 +14,23 @@ Get the path to wkhtmltopdf and update `WKHTMLTOPDF_COMMAND` in `.env`:
 which wkhtmltopdf
 ```
 
+In one shell watch for changes:
+
+```
+yarn build-watch
+```
+
+And in another shell start the server:
+
+```
+yarn start-dev
+```
+
+## Production
+
 Start server:
 
 ```
+yarn build
 yarn start
 ```

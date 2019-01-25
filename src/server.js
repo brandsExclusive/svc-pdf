@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import wkhtmltopdfuire from 'wkhtmltopdf';
+import wkhtmltopdf from 'wkhtmltopdf';
 import path from 'path';
 import fs from 'fs';
 import React from 'react';

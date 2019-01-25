@@ -1,6 +1,12 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const wkhtmltopdf = require('wkhtmltopdf')
+import express from 'express';
+import bodyParser from 'body-parser';
+import wkhtmltopdfuire from 'wkhtmltopdf';
+import path from 'path';
+import fs from 'fs';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+
+import App from './pdf/GiftCard/App';
 
 wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND
 
@@ -23,8 +29,17 @@ exports.getServer = () => {
   app.use(bodyParser.json())
 
   app.get('/api/pdf/gift-card/:id', (req, res, next) => {
-    wkhtmltopdf('<h1>Test</h1><p>Hello world</p>')
-      .pipe(res);
+    const indexFile = path.resolve('./index.html');
+    const app = ReactDOMServer.renderToString(<App />);
+    fs.readFile(indexFile, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Something went wrong:', err);
+        return res.status(500).send('Error!');
+      }
+      return wkhtmltopdf(data.replace('<div id="root"></div>', `<div id="root">${app}</div>`))
+        .pipe(res);
+    });
+
   })
 
   return app

@@ -34,7 +34,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND;
+_wkhtmltopdf2.default.command = process.env.WKHTMLTOPDF_COMMAND;
 
 exports.getServer = function () {
   var app = (0, _express2.default)();
@@ -59,7 +59,7 @@ exports.getServer = function () {
         console.error('Something went wrong:', err);
         return res.status(500).send('Error!');
       }
-      return wkhtmltopdf(data.replace('<div id="root"></div>', '<div id="root">' + app + '</div>')).pipe(res);
+      return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '<div id="root">' + app + '</div>')).pipe(res);
     });
   });
 

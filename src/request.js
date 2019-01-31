@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 const defaultOptions = {
   method: 'GET',
 };
+
 module.exports = async (destination, inOptions) => {
 
   const options = Object.assign({}, defaultOptions, inOptions);

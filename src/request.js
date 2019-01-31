@@ -22,7 +22,7 @@ module.exports = async (destination, inOptions) => {
 
   if (!response.ok) {
     const error = await response.text()
-    console.log('response :', error);
+    console.error('response :', error);
     return {
       error: {
         status: response.status,

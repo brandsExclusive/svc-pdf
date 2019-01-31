@@ -27,15 +27,15 @@ exports.getGiftCard = function () {
           case 4:
             response = _context.sent;
 
-            if (response.result) {
+            if (!(!response.result && response.error)) {
               _context.next = 7;
               break;
             }
 
             return _context.abrupt('return', {
               error: {
-                status: 500,
-                message: 'Something went wrong'
+                status: response.error.status,
+                message: response.error.message
               }
             });
 

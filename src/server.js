@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import auth from 'lib-auth-roles';
 
 import App from './pdf/GiftCard/App';
 import { getGiftCard } from './api/controllers/promo'
@@ -13,6 +14,7 @@ wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND
 
 exports.getServer = () => {
   const app = express()
+  const verifyUserSignature = auth.verifyUserSignature({ endpoint: process.env.API_ENDPOINT });
 
   app.use(function (req, res, next) {
     // add CORS headers
@@ -29,7 +31,7 @@ exports.getServer = () => {
 
   app.use(bodyParser.json())
 
-  app.get('/api/pdf/gift-cards/:id', async (req, res, next) => {
+  app.get('/api/pdf/gift-cards/:id', verifyUserSignature, async (req, res, next) => {
     const options = {
       orientation: 'portrait',
       pageSize: 'A4',
@@ -53,7 +55,7 @@ exports.getServer = () => {
       }
       return wkhtmltopdf(
         data.replace('<div id="root"></div>', `${app}`), options)
-        .pipe(res);
+        .pipe(res.attachment('path/to/LuxuryEscapes-GiftCard.pdf'));
     });
 
   })

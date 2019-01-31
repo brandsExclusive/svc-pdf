@@ -8,11 +8,11 @@ exports.getGiftCard = async (req) => {
   }
   const response = await request(apiHost + `/api/gift-card/code/${req.params.id}`, opts)
 
-  if (!response.result) {
+  if (!response.result && response.error) {
     return {
       error: {
-        status: 500,
-        message: 'Something went wrong'
+        status: response.error.status,
+        message: response.error.message
       }
     }
   }

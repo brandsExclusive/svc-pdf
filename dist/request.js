@@ -51,7 +51,7 @@ module.exports = function () {
           case 9:
             error = _context.sent;
 
-            console.log('response :', error);
+            console.error('response :', error);
             return _context.abrupt('return', {
               error: {
                 status: response.status,

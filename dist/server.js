@@ -28,6 +28,10 @@ var _server = require('react-dom/server');
 
 var _server2 = _interopRequireDefault(_server);
 
+var _libAuthRoles = require('lib-auth-roles');
+
+var _libAuthRoles2 = _interopRequireDefault(_libAuthRoles);
+
 var _App = require('./pdf/GiftCard/App');
 
 var _App2 = _interopRequireDefault(_App);
@@ -42,6 +46,7 @@ _wkhtmltopdf2.default.command = process.env.WKHTMLTOPDF_COMMAND;
 
 exports.getServer = function () {
   var app = (0, _express2.default)();
+  var verifyUserSignature = _libAuthRoles2.default.verifyUserSignature({ endpoint: process.env.API_ENDPOINT });
 
   app.use(function (req, res, next) {
     // add CORS headers
@@ -55,7 +60,7 @@ exports.getServer = function () {
 
   app.use(_bodyParser2.default.json());
 
-  app.get('/api/pdf/gift-cards/:id', function () {
+  app.get('/api/pdf/gift-cards/:id', verifyUserSignature, function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
       var options, indexFile, giftCard, app;
       return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -94,7 +99,7 @@ exports.getServer = function () {
                   console.error('Something went wrong:', err);
                   return res.status(500).send('Error!');
                 }
-                return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '' + app), options).pipe(res);
+                return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '' + app), options).pipe(res.attachment('path/to/LuxuryEscapes-GiftCard.pdf'));
               });
 
             case 9:

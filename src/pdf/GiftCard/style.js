@@ -73,4 +73,4 @@ export default {
   footerText: {
     marginBottom: '16px',
   }
-}
+};

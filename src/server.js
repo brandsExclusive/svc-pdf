@@ -8,7 +8,7 @@ import ReactDOMServer from 'react-dom/server';
 import auth from 'lib-auth-roles';
 
 import App from './pdf/GiftCard/App';
-import { getGiftCard } from './api/controllers/promo'
+import { validGiftCard } from './lib/giftCard'
 
 wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND
 
@@ -31,7 +31,7 @@ exports.getServer = () => {
 
   app.use(bodyParser.json())
 
-  app.get('/api/pdf/gift-cards/:id', verifyUserSignature, async (req, res, next) => {
+  app.post('/api/pdf/gift-cards', verifyUserSignature, (req, res, next) => {
     const options = {
       orientation: 'portrait',
       pageSize: 'A4',
@@ -43,9 +43,10 @@ exports.getServer = () => {
       title: 'Luxury Escapes Gift Card'
     }
     const indexFile = path.resolve('./index.html');
-    const giftCard = await getGiftCard(req)
-    if (giftCard.error) {
-      return res.status(giftCard.error.status).send(giftCard.error.message)
+    const { giftCard } = req.body;
+    if (!validGiftCard(giftCard)) {
+      console.error('Missing details', giftCard);
+      return res.status(500).send('Missing Gift Card Details')
     }
     const app = ReactDOMServer.renderToString(<App {...giftCard} />);
     fs.readFile(indexFile, 'utf8', (err, data) => {
@@ -53,9 +54,8 @@ exports.getServer = () => {
         console.error('Something went wrong:', err);
         return res.status(500).send('Error!');
       }
-      return wkhtmltopdf(
-        data.replace('<div id="root"></div>', `${app}`), options)
-        .pipe(res.attachment('path/to/LuxuryEscapes-GiftCard.pdf'));
+      return wkhtmltopdf(data.replace('<div id="root"></div>', `${app}`), options)
+        .pipe(res);
     });
 
   })

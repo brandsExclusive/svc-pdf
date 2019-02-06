@@ -44,7 +44,9 @@ _wkhtmltopdf2.default.command = process.env.WKHTMLTOPDF_COMMAND;
 
 exports.getServer = function () {
   var app = (0, _express2.default)();
-  var verifyUserSignature = _libAuthRoles2.default.verifyUserSignature({ endpoint: process.env.API_ENDPOINT });
+  var verifyUserSignature = _libAuthRoles2.default.verifyUserSignature({
+    endpoint: process.env.API_ENDPOINT
+  });
 
   app.use(function (req, res, next) {
     // add CORS headers

@@ -22,14 +22,14 @@ export default {
     lineHeight: 2
   },
   picture: {
-    width: '100%',
+    width: '100%'
   },
   logo: {
     marginTop: '75px',
-    width: '50%',
+    width: '50%'
   },
   section: {
-    marginTop: '100px',
+    marginTop: '100px'
   },
   amount: {
     fontSize: '56px',
@@ -38,19 +38,19 @@ export default {
   personalisation: {
     marginTop: '125px',
     marginRight: '100px',
-    lineHeight: '56px',
+    lineHeight: '56px'
   },
   leftColumn: {
     float: 'left',
-    width: '28%',
+    width: '28%'
   },
   rightColumn: {
     float: 'left',
-    width: '72%',
+    width: '72%'
   },
   personalisationSection: {
     fontWeight: 600,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
   message: {
     height: '90px'
@@ -71,6 +71,6 @@ export default {
     marginBottom: '16px'
   },
   footerText: {
-    marginBottom: '16px',
+    marginBottom: '16px'
   }
 };

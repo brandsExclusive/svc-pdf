@@ -1,11 +1,16 @@
 import React from 'react';
 
-import style from './style'
+import style from './style';
 
-const logoId = 'https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco,c_scale,w_1200/luxuryescapes/luxuryescapes-logo'
-const bowId = 'https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco/luxuryescapes/gift-wrap-large'
+const logoId =
+  'https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco,c_scale,w_1200/luxuryescapes/luxuryescapes-logo';
+const bowId =
+  'https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco/luxuryescapes/gift-wrap-large';
 
-export default ({ personalisation, code, expiry, amount}) => (
+const redeemInstructions =
+  'Become a member at LuxuryEscapes.com to choose your perfect escape. At checkout, enter your unique voucher code and your account will be credited with the value of this gift card. The amount will be deducted from the final cost of your chosen holiday. Gift card valid for three years from purchase and must be used by the expiry date.';
+
+const Component = ({ personalisation, code, expiry, amount }) => (
   <div className="root" style={style.root}>
     <div style={style.body}>
       <picture style={style.picture}>
@@ -59,11 +64,11 @@ export default ({ personalisation, code, expiry, amount}) => (
         </div>
         <div style={style.rightColumn}>
           <div style={style.footerSection}>How To Redeem:</div>
-          <div style={style.footerText}>Become a member at LuxuryEscapes.com to choose your perfect
-                escape. At checkout, enter your unique voucher code and your account will be credited with the value of this gift card. The amount will be deducted from the final cost of your chosen holiday. Gift card valid for three years from purchase and must be used by the expiry date.
-          </div>
+          <div style={style.footerText}>{redeemInstructions}</div>
         </div>
       </div>
     </div>
   </div>
 );
+
+export default Component;

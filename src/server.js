@@ -1,3 +1,5 @@
+require('dotenv-safe').config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import wkhtmltopdf from 'wkhtmltopdf';
@@ -17,6 +19,8 @@ exports.getServer = () => {
   const verifyUserSignature = auth.verifyUserSignature({
     endpoint: process.env.API_ENDPOINT
   });
+
+  const debug = process.env.APP_ENV === 'test';
 
   app.use(function(req, res, next) {
     // add CORS headers
@@ -42,7 +46,8 @@ exports.getServer = () => {
       marginLeft: 0,
       marginRight: 0,
       dpi: 300,
-      title: 'Luxury Escapes Gift Card'
+      title: 'Luxury Escapes Gift Card',
+      debug
     };
     const indexFile = path.resolve('./index.html');
     const { giftCard } = req.body;

@@ -40,6 +40,8 @@ var _giftCard = require('./lib/giftCard');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+require('dotenv-safe').config();
+
 _wkhtmltopdf2.default.command = process.env.WKHTMLTOPDF_COMMAND;
 
 exports.getServer = function () {
@@ -47,6 +49,8 @@ exports.getServer = function () {
   var verifyUserSignature = _libAuthRoles2.default.verifyUserSignature({
     endpoint: process.env.API_ENDPOINT
   });
+
+  var debug = process.env.APP_ENV === 'test';
 
   app.use(function (req, res, next) {
     // add CORS headers
@@ -69,7 +73,8 @@ exports.getServer = function () {
       marginLeft: 0,
       marginRight: 0,
       dpi: 300,
-      title: 'Luxury Escapes Gift Card'
+      title: 'Luxury Escapes Gift Card',
+      debug: debug
     };
     var indexFile = _path2.default.resolve('./index.html');
     var giftCard = req.body.giftCard;

@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:8.10.0
     environment:
       APP_ENV: test
-      WKHTMLTOPDF_COMMAND: ./wkhtmltox/bin/wkhtmltopdf,
+      WKHTMLTOPDF_COMMAND: ./wkhtmltox/bin/wkhtmltopdf
 
     steps:
       - checkout

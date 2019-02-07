@@ -17,7 +17,7 @@ wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND;
 exports.getServer = () => {
   const app = express();
   const verifyUserSignature = auth.verifyUserSignature({
-    endpoint: process.env.API_ENDPOINT
+    endpoint: process.env.API_HOST
   });
 
   const debug = process.env.APP_ENV === 'test';

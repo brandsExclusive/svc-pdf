@@ -64,7 +64,7 @@ exports.getServer = function () {
 
   app.use(_bodyParser2.default.json());
 
-  app.post('/api/pdf/gift-cards', verifyUserSignature, function (req, res, next) {
+  app.post('/api/pdf/gift-cards', verifyUserSignature, function (req, res) {
     var options = {
       orientation: 'portrait',
       pageSize: 'A4',

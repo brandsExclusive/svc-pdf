@@ -8,7 +8,7 @@ import sandbox from './test/support/sandbox';
 import chai from './test/support/chai';
 import auth from 'lib-auth-roles';
 
-const { expect, assert } = chai;
+const { expect } = chai;
 
 let testServer = null;
 

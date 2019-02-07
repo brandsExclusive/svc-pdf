@@ -26,8 +26,7 @@ require('dotenv-safe').config({
   path: '.env'
 });
 
-var expect = _chai2.default.expect,
-    assert = _chai2.default.assert;
+var expect = _chai2.default.expect;
 
 
 var testServer = null;

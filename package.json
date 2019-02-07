@@ -9,7 +9,10 @@
     "start": "node dist/start.js",
     "dev:start": "nodemon dist/start.js",
     "dev:build": "babel src --out-dir dist --watch",
-    "test": "APP_ENV=test ./node_modules/mocha/bin/mocha \"src/**/*.test.js\" --require babel-core/register --recursive --exit"
+    "test": "APP_ENV=test yarn js:test && yarn js:lint",
+    "js:test": "APP_ENV=test ./node_modules/mocha/bin/mocha \"src/**/*.test.js\" --require babel-core/register --recursive --exit",
+    "js:lint": "APP_ENV=test ./node_modules/eslint/bin/eslint.js src",
+    "js:lint:fix": "APP_ENV=test ./node_modules/eslint/bin/eslint.js --fix src"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

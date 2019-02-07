@@ -56,13 +56,11 @@ describe('Server', function () {
 
     it('responds with status 500 if expiry is not date', function (done) {
       var body = {
-        giftCard: {
-          gift_card_value: 100,
-          currency: 'AUD',
-          personalised: {},
-          expires_at: 'Nek minute',
-          gift_card_code: 'ASDF'
-        }
+        gift_card_value: 100,
+        currency: 'AUD',
+        personalised: {},
+        expires_at: 'Nek minute',
+        gift_card_code: 'ASDF'
       };
       (0, _supertest2.default)(testServer).post('/api/pdf/gift-cards').send(body).expect(500).end(function (err) {
         if (err) return done(err);
@@ -72,13 +70,11 @@ describe('Server', function () {
 
     it('responds with status 200 if has all data', function (done) {
       var body = {
-        giftCard: {
-          gift_card_value: 100,
-          currency: 'AUD',
-          personalised: {},
-          expires_at: '2022-01-08T23:59:59.000Z',
-          gift_card_code: 'ASDF'
-        }
+        gift_card_value: 100,
+        currency: 'AUD',
+        personalised: {},
+        expires_at: '2022-01-08T23:59:59.000Z',
+        gift_card_code: 'ASDF'
       };
       (0, _supertest2.default)(testServer).post('/api/pdf/gift-cards').send(body).end(function (err, res) {
         if (err) return done(err);

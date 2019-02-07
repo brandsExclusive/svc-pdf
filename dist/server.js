@@ -38,6 +38,10 @@ var _App2 = _interopRequireDefault(_App);
 
 var _giftCard = require('./lib/giftCard');
 
+var _giftCard2 = require('./schemas/giftCard');
+
+var _giftCard3 = _interopRequireDefault(_giftCard2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv-safe').config();
@@ -77,8 +81,7 @@ exports.getServer = function () {
       debug: debug
     };
     var indexFile = _path2.default.resolve('./index.html');
-    var giftCard = req.body.giftCard;
-
+    var giftCard = (0, _giftCard.giftCardMap)(req.body);
     if (!(0, _giftCard.validGiftCard)(giftCard)) {
       console.error('Missing details', giftCard);
       return res.status(500).send('Missing Gift Card Details');
@@ -90,6 +93,15 @@ exports.getServer = function () {
         return res.status(500).send('Error!');
       }
       return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '' + app), options).pipe(res);
+    });
+  });
+
+  app.options('/api/pdf/gift-cards', function (req, res) {
+    res.status(200).json({
+      post: {
+        params: {},
+        body: _giftCard3.default
+      }
     });
   });
 

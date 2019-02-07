@@ -10,7 +10,8 @@ import ReactDOMServer from 'react-dom/server';
 import auth from 'lib-auth-roles';
 
 import App from './pdf/GiftCard/App';
-import { validGiftCard } from './lib/giftCard';
+import { validGiftCard, giftCardMap } from './lib/giftCard';
+import schema from './schemas/giftCard';
 
 wkhtmltopdf.command = process.env.WKHTMLTOPDF_COMMAND;
 
@@ -50,7 +51,7 @@ exports.getServer = () => {
       debug
     };
     const indexFile = path.resolve('./index.html');
-    const { giftCard } = req.body;
+    const giftCard = giftCardMap(req.body);
     if (!validGiftCard(giftCard)) {
       console.error('Missing details', giftCard);
       return res.status(500).send('Missing Gift Card Details');
@@ -65,6 +66,15 @@ exports.getServer = () => {
         data.replace('<div id="root"></div>', `${app}`),
         options
       ).pipe(res);
+    });
+  });
+
+  app.options('/api/pdf/gift-cards', (req, res) => {
+    res.status(200).json({
+      post: {
+        params: {},
+        body: schema
+      }
     });
   });
 

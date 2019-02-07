@@ -40,13 +40,11 @@ describe('Server', function() {
 
     it('responds with status 500 if expiry is not date', function(done) {
       const body = {
-        giftCard: {
-          gift_card_value: 100,
-          currency: 'AUD',
-          personalised: {},
-          expires_at: 'Nek minute',
-          gift_card_code: 'ASDF'
-        }
+        gift_card_value: 100,
+        currency: 'AUD',
+        personalised: {},
+        expires_at: 'Nek minute',
+        gift_card_code: 'ASDF'
       };
       request(testServer)
         .post('/api/pdf/gift-cards')
@@ -60,13 +58,11 @@ describe('Server', function() {
 
     it('responds with status 200 if has all data', function(done) {
       const body = {
-        giftCard: {
-          gift_card_value: 100,
-          currency: 'AUD',
-          personalised: {},
-          expires_at: '2022-01-08T23:59:59.000Z',
-          gift_card_code: 'ASDF'
-        }
+        gift_card_value: 100,
+        currency: 'AUD',
+        personalised: {},
+        expires_at: '2022-01-08T23:59:59.000Z',
+        gift_card_code: 'ASDF'
       };
       request(testServer)
         .post('/api/pdf/gift-cards')

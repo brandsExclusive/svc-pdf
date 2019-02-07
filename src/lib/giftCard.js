@@ -15,6 +15,17 @@ const validGiftCard = data => {
   );
 };
 
+const giftCardMap = data => {
+  return {
+    gift_card_code: data.gift_card_code || '',
+    expires_at: data.expires_at || '',
+    gift_card_value: data.gift_card_value || '',
+    personalised: data.personalised || {},
+    currency: data.currency || ''
+  };
+};
+
 module.exports = {
-  validGiftCard
+  validGiftCard,
+  giftCardMap
 };

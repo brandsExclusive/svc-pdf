@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.10.0
+    environment:
+      PORT: 8000
+      APP_ENV: test
+      JWT_PUBLIC_KEY: ASDF
+      API_HOST: https://test-api.luxgroup.com
+      WKHTMLTOPDF_COMMAND: ./wkhtmltox/bin/wkhtmltopdf
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      
+      - run: wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz --no-clobber
+
+      - run: tar -xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - ~/wkhtmltox 
+            - ~/.cache/yarn
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      - run: yarn test
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build

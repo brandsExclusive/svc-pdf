@@ -8,21 +8,38 @@
   "scripts": {
     "start": "node dist/start.js",
     "dev:start": "nodemon dist/start.js",
-    "dev:build": "babel src --out-dir dist --watch"
+    "dev:build": "babel src --out-dir dist --watch",
+    "test": "APP_ENV=test yarn js:test && yarn js:lint",
+    "js:test": "APP_ENV=test ./node_modules/mocha/bin/mocha \"src/**/*.test.js\" --require babel-core/register --recursive --exit",
+    "js:lint": "APP_ENV=test ./node_modules/eslint/bin/eslint.js src",
+    "js:lint:fix": "APP_ENV=test ./node_modules/eslint/bin/eslint.js --fix src"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "currency-formatter": "^1.5.3",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
+    "lib-auth-roles": "git+https://github.com/brandsExclusive/lib-auth-roles.git#0.2.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3",
+    "sinon": "^7.2.3",
     "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "nodemon": "^1.18.9"
+    "chai": "^4.2.0",
+    "chai-stream": "^0.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.16.4",
+    "supertest": "^3.4.2"
   }
 }

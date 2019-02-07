@@ -4,7 +4,9 @@
   "regions": ["ap-southeast-2"],
   "environment": {
     "APP_ENV": "production",
-    "WKHTMLTOPDF_COMMAND": "./wkhtmltox/bin/wkhtmltopdf"
+    "WKHTMLTOPDF_COMMAND": "./wkhtmltox/bin/wkhtmltopdf",
+    "API_HOST": "https://api.luxgroup.com",
+    "JWT_PUBLIC_KEY": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHZk1BMEdDU3FHU0liM0RRRUJBUVVBQTRHTkFEQ0JpUUtCZ1FEUXFOTW16cjM3a0JJbXVFYXcvazRTeTJPQwp4MlFXQ0d1ZDJEVmtWTHBLd3R2azNRQWdheVo5TUlRcGRXRERYVGtITk1BUjNja3AvZDlGMlVZdG91Q0RSUkYxCi9iUkVTclBBQXpOMjlyQUdEV0hkVVFpVmdwa01BcU5VVzVGTHFxWWhNS2NaNWc4bXRrUGhaQXZzYWlpM0NGQ3gKSVUvQ1JidnJVdnRWak4ydmN3SURBUUFCCi0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo="
   },
   "error_pages": {
     "disable": true

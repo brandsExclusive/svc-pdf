@@ -21,9 +21,6 @@ jobs:
 
       - run: yarn install
 
-      - run: install wkhtmltopdf
-          command:
-
       - save_cache:
           paths:
             - ~/wkhtmltox 

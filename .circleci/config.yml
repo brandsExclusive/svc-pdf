@@ -4,7 +4,10 @@ jobs:
     docker:
       - image: circleci/node:8.10.0
     environment:
+      PORT: 8000
       APP_ENV: test
+      JWT_PUBLIC_KEY: ASDF
+      API_HOST: https://test-api.luxgroup.com
       WKHTMLTOPDF_COMMAND: ./wkhtmltox/bin/wkhtmltopdf
 
     steps:

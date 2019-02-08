@@ -11,7 +11,7 @@ exports.schema = {
       type: 'string'
     },
     gift_card_value: {
-      type: 'integer'
+      type: 'string'
     },
     currency: {
       type: 'string'
@@ -31,5 +31,5 @@ exports.schema = {
       }
     }
   },
-  required: ['gift_card_code', 'expires_at', 'gift_card_value', 'currency', 'personalised']
+  required: ['gift_card_code', 'expires_at', 'gift_card_value', 'currency']
 };

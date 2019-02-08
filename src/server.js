@@ -21,6 +21,8 @@ exports.getServer = () => {
     endpoint: process.env.API_HOST
   });
 
+  app.use(bodyParser.json());
+
   const debug = process.env.APP_ENV === 'test';
 
   app.use(function(req, res, next) {
@@ -28,7 +30,7 @@ exports.getServer = () => {
     res.header('Access-Control-Allow-Origin', req.headers.origin);
     res.header(
       'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, account, Authorization'
+      'Origin, X-Requested-With, x-stormpath-agent, Content-Type, Accept, account, Authorization'
     );
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -36,10 +38,17 @@ exports.getServer = () => {
     next();
   });
 
-  app.use(bodyParser.json());
+  app.options('/api/pdf/gift-cards', (req, res) => {
+    res.status(200).json({
+      post: {
+        params: {},
+        body: schema
+      }
+    });
+  });
 
   app.post('/api/pdf/gift-cards', verifyUserSignature, (req, res) => {
-    const options = {
+    const pdfOptions = {
       orientation: 'portrait',
       pageSize: 'A4',
       marginTop: 0,
@@ -62,19 +71,11 @@ exports.getServer = () => {
         console.error('Something went wrong:', err);
         return res.status(500).send('Error!');
       }
+      res.type('pdf');
       return wkhtmltopdf(
         data.replace('<div id="root"></div>', `${app}`),
-        options
+        pdfOptions
       ).pipe(res);
-    });
-  });
-
-  app.options('/api/pdf/gift-cards', (req, res) => {
-    res.status(200).json({
-      post: {
-        params: {},
-        body: schema
-      }
     });
   });
 

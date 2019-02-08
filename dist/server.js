@@ -54,22 +54,31 @@ exports.getServer = function () {
     endpoint: process.env.API_HOST
   });
 
+  app.use(_bodyParser2.default.json());
+
   var debug = process.env.APP_ENV === 'test';
 
   app.use(function (req, res, next) {
     // add CORS headers
     res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, account, Authorization');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, x-stormpath-agent, Content-Type, Accept, account, Authorization');
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Vary', 'Origin');
     next();
   });
 
-  app.use(_bodyParser2.default.json());
+  app.options('/api/pdf/gift-cards', function (req, res) {
+    res.status(200).json({
+      post: {
+        params: {},
+        body: _giftCard3.default
+      }
+    });
+  });
 
   app.post('/api/pdf/gift-cards', verifyUserSignature, function (req, res) {
-    var options = {
+    var pdfOptions = {
       orientation: 'portrait',
       pageSize: 'A4',
       marginTop: 0,
@@ -92,16 +101,8 @@ exports.getServer = function () {
         console.error('Something went wrong:', err);
         return res.status(500).send('Error!');
       }
-      return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '' + app), options).pipe(res);
-    });
-  });
-
-  app.options('/api/pdf/gift-cards', function (req, res) {
-    res.status(200).json({
-      post: {
-        params: {},
-        body: _giftCard3.default
-      }
+      res.type('pdf');
+      return (0, _wkhtmltopdf2.default)(data.replace('<div id="root"></div>', '' + app), pdfOptions).pipe(res);
     });
   });
 

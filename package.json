@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/start.js",
+    "dev": "yarn dev:build & yarn dev:start",
     "dev:start": "nodemon dist/start.js",
     "dev:build": "babel src --out-dir dist --watch",
     "test": "APP_ENV=test yarn js:test && yarn js:lint",

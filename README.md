@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/brandsExclusive/svc-pdf.svg?style=svg)](https://circleci.com/gh/brandsExclusive/svc-pdf)
+
+
 # PDF Service
 
 Send some data, get a PDF
@@ -24,6 +27,12 @@ And in another shell start the server:
 
 ```
 yarn dev:start
+```
+
+If you just want to do both in one:
+
+```
+yarn dev
 ```
 
 ## Production

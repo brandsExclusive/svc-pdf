@@ -45,7 +45,7 @@ yarn start
 
 ## Deploy
 
-https://up.docs.apex.sh/#aws_credentials
+https://apex.sh/docs/up/credentials/
 
 ```
 bash deploy/deploy-jenkins.sh test

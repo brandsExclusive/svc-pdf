@@ -25,7 +25,7 @@ echo "Config File: ${CONFIG_FILE}"
 
 if [ ! -f ${CONFIG_FILE} ]; then echo "DEPLOYMENT_FAILURE: No config file found for Environment=${ENVIRONMENT}"; exit; fi
 
-cp ${CONFIG_FILE} ${ROOT_DIR}/up.json
+node deploy/generate-up-config.js ${CONFIG_FILE} > ${ROOT_DIR}/up.json
 
 echo "Deploying svc-pdf to ${ENVIRONMENT}"
 

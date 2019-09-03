@@ -45,7 +45,16 @@ yarn start
 
 ## Deploy
 
-https://up.docs.apex.sh/#aws_credentials
+This service is run on AWS Lambda, with api gateway in front of it
+We are using [up](https://up.docs.apex.sh/#introduction) as the abstraction for this
+
+to deploy we can just run the following JOBS on jenkins
+
+* [TEST](https://jenkins.luxgroup.com/job/release-test-pdf-svc/)
+
+* [UAT](https://jenkins.luxgroup.com/job/release-uat-pdf-svc/)
+
+* [PRODUCTION](https://jenkins.luxgroup.com/job/release-prod-pdf-svc/)
 
 ```
 bash deploy/deploy-jenkins.sh test

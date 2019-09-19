@@ -4,8 +4,6 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 
-#RUN apk add --no-cache --virtual .gyp python make g++
-
 # Git required for npm / yarn
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
@@ -21,11 +19,10 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl \
 
 COPY .env.example .env
 RUN yarn install
-#RUN apk del .gyp
 
 COPY . .
 
-RUN yarn dev:build
+RUN yarn build
 
 EXPOSE 8080
 

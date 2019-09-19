@@ -86,6 +86,7 @@ exports.getServer = function () {
       marginLeft: 0,
       marginRight: 0,
       dpi: 300,
+      encoding: 'utf8',
       title: 'Luxury Escapes Gift Card',
       debug: debug
     };

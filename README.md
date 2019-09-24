@@ -35,6 +35,10 @@ If you just want to do both in one:
 yarn dev
 ```
 
+## Docker
+
+Dockerfile included for local development.  Refer to https://github.com/brandsExclusive/infra-le-local-dev for instructions with Docker Compose.
+
 ## Production
 
 Start server:

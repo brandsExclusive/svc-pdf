@@ -15,7 +15,7 @@ const Component = ({ personalisation, code, expiry, amount }) => (
         <img
           style={style.banner}
           src={bannerId}
-          alt="LuxuryEscapes Gift Card"
+          alt="Luxury Escapes Gift Card"
         />
       </picture>
       <div style={style.section}>

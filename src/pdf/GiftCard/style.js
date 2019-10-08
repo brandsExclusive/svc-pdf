@@ -7,36 +7,27 @@ export default {
   },
   body: {
     width: '21cm',
-    height: '29.7cm',
+    height: 'auto',
     margin: '30mm 40mm 30mm 40mm'
   },
-  bow: {
-    width: '40%',
+  banner: {
     position: 'absolute',
-    right: 0,
-    top: 0
-  },
-  subHeading: {
-    fontSize: '22px',
-    fontWeight: 600,
-    lineHeight: 2
-  },
-  picture: {
-    width: '100%'
-  },
-  logo: {
-    marginTop: '75px',
-    width: '50%'
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: 'auto'
   },
   section: {
-    marginTop: '100px'
+    marginTop: '570px',
+    marginRight: '100px'
   },
   amount: {
+    textAlign: 'center',
     fontSize: '56px',
     lineHeight: 1.25
   },
   personalisation: {
-    marginTop: '125px',
+    marginTop: '10px',
     marginRight: '100px',
     lineHeight: '56px'
   },
@@ -63,7 +54,7 @@ export default {
     height: '36px'
   },
   footer: {
-    marginTop: '550px',
+    marginTop: '250px',
     marginRight: '100px'
   },
   footerSection: {
@@ -72,5 +63,8 @@ export default {
   },
   footerText: {
     marginBottom: '16px'
+  },
+  footerTextRedeem: {
+    fontSize: '14px'
   }
 };

@@ -97,9 +97,7 @@ exports.getServer = () => {
     };
 
     const indexFile = path.resolve('./index.html');
-    console.log(req.body, "*********")
     const app = ReactDOMServer.renderToString(<AppTaxInvoice items={req.body} />);
-    console.log('any')
     fs.readFile(indexFile, 'utf8', (err, data) => {
       if (err) {
         console.error('Something went wrong:', err);

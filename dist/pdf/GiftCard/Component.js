@@ -35,7 +35,7 @@ var Component = function Component(_ref) {
         _react2.default.createElement('img', {
           style: _style2.default.banner,
           src: bannerId,
-          alt: 'LuxuryEscapes Gift Card'
+          alt: 'Luxury Escapes Gift Card'
         })
       ),
       _react2.default.createElement(

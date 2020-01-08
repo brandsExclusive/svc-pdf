@@ -31,11 +31,11 @@ var Component = function Component(_ref) {
       { style: _style2.default.body },
       _react2.default.createElement(
         'picture',
-        { style: _style2.default.picture },
+        null,
         _react2.default.createElement('img', {
           style: _style2.default.banner,
           src: bannerId,
-          alt: 'Luxury Escapes Gift Card'
+          alt: 'Luxury Escapes Logo'
         })
       ),
       _react2.default.createElement(

@@ -126,9 +126,12 @@ exports.getServer = function () {
     };
 
     var indexFile = _path2.default.resolve('./index.html');
-    console.log(req.body, "*********");
-    var app = _server2.default.renderToString(_react2.default.createElement(_App2.default, { items: req.body }));
-    console.log('any');
+    var app = _server2.default.renderToString(_react2.default.createElement(_App2.default, {
+      items: req.body.list,
+      date: req.body.date,
+      customer_name: req.body.customer_name,
+      order_currency: req.body.order_currency
+    }));
     _fs2.default.readFile(indexFile, 'utf8', function (err, data) {
       if (err) {
         console.error('Something went wrong:', err);

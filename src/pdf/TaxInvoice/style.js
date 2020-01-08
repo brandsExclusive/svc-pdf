@@ -2,69 +2,80 @@ export default {
   root: {
     fontFamily: 'IBM Plex Sans, sans-serif',
     fontSize: '16px',
-    padding: '1px 0',
-    pageSize: 'A4'
+    padding: '20px 20px',
+    pageSize: 'A4',
+    margin: '50px auto',
+    width: '95%'
   },
-  body: {
-    width: '21cm',
-    height: 'auto',
-    margin: '30mm 40mm 30mm 40mm'
-  },
-  banner: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
+  logo: {
+    display: 'block',
+    margin: '0 auto',
+    width: '300px',
     height: 'auto'
   },
+  pageHeader: { textAlign: 'right', marginBottom: '100px' },
+  banner: {
+    width: '100%'
+  },
   section: {
-    marginTop: '570px',
-    marginRight: '100px'
+    position: 'relative',
+    paddingTop: '37px',
+    width: '100%',
+    margin: '50px auto',
+    background: '#d2d8d9'
   },
-  amount: {
-    textAlign: 'center',
-    fontSize: '56px',
-    lineHeight: 1.25
+  tableContainer: { overflowY: 'auto', height: 'auto' },
+  table: { borderSpacing: '0', borderCollapse: 'collapse', width: '100%' },
+  td: {
+    border: '1px solid black',
+    background: '#fff',
+    padding: '10px 25px'
   },
-  personalisation: {
-    marginTop: '10px',
-    marginRight: '100px',
-    lineHeight: '56px'
+  th: {
+    border: '1px solid black',
+    borderBottom: 'none',
+    background: '#fff',
+    padding: '10px 25px',
+    height: '0',
+    lineHeight: '0',
+    paddingTop: '0',
+    paddingBottom: '0',
+    color: 'transparent',
+    whiteSpace: 'nowrap'
   },
-  leftColumn: {
-    float: 'left',
-    width: '28%'
+
+  hr: {
+    marginTop: '20px',
+    borderBottom: '2px solid black'
   },
-  rightColumn: {
-    float: 'left',
-    width: '72%'
+
+  tdTotal: {
+    border: 'none',
+    background: '#fff',
+    padding: '10px 25px'
   },
-  personalisationSection: {
-    fontWeight: 600,
-    textTransform: 'uppercase'
-  },
-  message: {
-    height: '90px'
-  },
-  line: {
-    borderBottom: '1px',
-    borderBottomStyle: 'solid',
-    borderColor: '#999999',
-    marginBottom: '20px',
-    height: '36px'
-  },
-  footer: {
-    marginTop: '250px',
-    marginRight: '100px'
-  },
-  footerSection: {
-    fontWeight: 600,
-    marginBottom: '16px'
-  },
-  footerText: {
-    marginBottom: '16px'
-  },
-  footerTextRedeem: {
-    fontSize: '14px'
+
+  tableTotal: { marginLeft: 'auto' },
+  totalPriceRow : {
+    borderBottom: '2px solid black'
   }
+
+  abn: {
+    clear: 'left'
+  },
+  'td:first-child,\nth:first-child': { border: '0' },
+  'tbody tr:nth-child(even) td': { background: '#f7f7f7' },
+
+  header: {
+    position: 'absolute',
+    background: 'transparent',
+    color: '#000',
+    padding: '9px 25px',
+    top: '0',
+    marginLeft: '-25px',
+    lineHeight: 'normal',
+    borderLeft: '1px solid #eee'
+  },
+  'th:first-child div': { border: 'none' },
+  '.actions': { whiteSpace: 'nowrap', fontSize: '0' }
 };

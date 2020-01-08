@@ -97,7 +97,14 @@ exports.getServer = () => {
     };
 
     const indexFile = path.resolve('./index.html');
-    const app = ReactDOMServer.renderToString(<AppTaxInvoice items={req.body} />);
+    const app = ReactDOMServer.renderToString(
+      <AppTaxInvoice
+        items={req.body.list}
+        date={req.body.date}
+        customer_name={req.body.customer_name}
+        order_currency={req.body.order_currency}
+      />
+    );
     fs.readFile(indexFile, 'utf8', (err, data) => {
       if (err) {
         console.error('Something went wrong:', err);

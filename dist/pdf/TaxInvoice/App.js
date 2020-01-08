@@ -20,7 +20,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var App = function App(props) {
   return _react2.default.createElement(_Component2.default, {
-    items: props.items
+    items: props.items,
+    date: props.date,
+    customer_name: props.customer_name,
+    order_currency: props.order_currency
   });
 };
 

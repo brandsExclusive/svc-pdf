@@ -8,6 +8,9 @@ const App = (props) => {
   return (
     <Component
       items={props.items}
+      date={props.date}
+      customer_name={props.customer_name}
+      order_currency={props.order_currency}
     />
   );
 };

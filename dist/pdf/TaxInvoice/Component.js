@@ -12,75 +12,258 @@ var _style = require('./style');
 
 var _style2 = _interopRequireDefault(_style);
 
+var _formatCurrency = require('../../lib/formatCurrency');
+
+var _formatDate = require('../../lib/formatDate');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Component = function Component(_ref) {
-  var items = _ref.items;
+  var items = _ref.items,
+      date = _ref.date,
+      customer_name = _ref.customer_name,
+      order_currency = _ref.order_currency;
+
+  var logoId = 'https://res.cloudinary.com/lux-group/image/upload/v1576811154/LE_Logo_black_jp50wa.png';
+  var totalAmount = function totalAmount(total_price) {
+    return (0, _formatCurrency.formatDynamicAmount)(total_price, order_currency);
+  };
+
+  var formattedDate = (0, _formatDate.formatDate)(new Date(date));
+  var subTotal = items.reduce(function (sum, item) {
+    return sum + item.total_price;
+  }, 0);
+
+  var showGST = order_currency === 'AUD';
 
   return _react2.default.createElement(
     'div',
     { className: 'root', style: _style2.default.root },
     _react2.default.createElement(
-      'table',
+      'div',
       null,
+      _react2.default.createElement('img', { style: _style2.default.logo, src: logoId, alt: 'Luxury Escapes Invoice' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { style: _style2.default.pageHeader },
       _react2.default.createElement(
-        'thead',
+        'div',
         null,
-        _react2.default.createElement(
-          'tr',
-          null,
-          _react2.default.createElement(
-            'th',
-            null,
-            '#'
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            'Description'
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            'Quantity'
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            'Price'
-          )
-        )
+        'Tax Invoice'
       ),
       _react2.default.createElement(
-        'tbody',
+        'div',
         null,
-        items.map(function (item) {
-          return _react2.default.createElement(
+        'Invoice Date: ',
+        formattedDate,
+        ' '
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { style: _style2.default.name },
+      'Customer Name: ',
+      customer_name
+    ),
+    _react2.default.createElement(
+      'div',
+      { style: _style2.default.section },
+      _react2.default.createElement(
+        'div',
+        { style: _style2.default.tableContainer },
+        _react2.default.createElement(
+          'table',
+          { style: _style2.default.table },
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                '#'
+              ),
+              _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'Description',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'Description'
+                )
+              ),
+              _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'Quantity',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'Quantity'
+                )
+              ),
+              !showGST && _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'Price',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'Price'
+                )
+              ),
+              showGST && [_react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'Price exc GST ',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'Price exc GST'
+                )
+              ), _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'GST',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'GST 10%'
+                )
+              ), _react2.default.createElement(
+                'th',
+                { style: _style2.default.th },
+                'Price incl GST',
+                _react2.default.createElement(
+                  'div',
+                  { style: _style2.default.header },
+                  'Price incl GST'
+                )
+              )]
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            items.map(function (item, index) {
+              return _react2.default.createElement(
+                'tr',
+                null,
+                _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  index + 1
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  item.description
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  '1'
+                ),
+                !showGST && _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  totalAmount(item.total_price)
+                ),
+                showGST && [_react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  totalAmount(item.total_price)
+                ), _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  ' ',
+                  totalAmount(item.total_price * 0.1)
+                ), _react2.default.createElement(
+                  'td',
+                  { style: _style2.default.td },
+                  totalAmount(item.total_price * 1.1)
+                )]
+              );
+            })
+          )
+        )
+      )
+    ),
+    _react2.default.createElement('div', { style: _style2.default.hr }),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'table',
+        { style: _style2.default.tableTotal },
+        _react2.default.createElement(
+          'tbody',
+          null,
+          !showGST && _react2.default.createElement(
             'tr',
             null,
             _react2.default.createElement(
               'td',
-              null,
-              '1'
+              { style: _style2.default.tdTotal },
+              'Sub Total'
             ),
             _react2.default.createElement(
               'td',
-              null,
-              item.description
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              '1'
-            ),
-            _react2.default.createElement(
-              'td',
-              null,
-              item.price
+              { style: _style2.default.tdTotal },
+              totalAmount(subTotal)
             )
-          );
-        })
+          ),
+          showGST && [_react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              'Sub Total(excl GST)'
+            ),
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              totalAmount(subTotal)
+            )
+          ), _react2.default.createElement(
+            'tr',
+            { style: _style2.default.totalPriceRow },
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              'Total GST 10%'
+            ),
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              totalAmount(subTotal * 0.1)
+            )
+          ), _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              'Invoice Total'
+            ),
+            _react2.default.createElement(
+              'td',
+              { style: _style2.default.tdTotal },
+              totalAmount(subTotal * 1.1)
+            )
+          )]
+        )
       )
+    ),
+    _react2.default.createElement(
+      'div',
+      { style: _style2.default.abn },
+      'This tax invoice is provided for the purposes of GST only. ABN: 99 139 798 191'
     )
   );
 };

@@ -11,11 +11,11 @@ const redeemInstructions =
 const Component = ({ personalisation, code, expiry, amount }) => (
   <div className="root" style={style.root}>
     <div style={style.body}>
-      <picture style={style.picture}>
+      <picture>
         <img
           style={style.banner}
           src={bannerId}
-          alt="Luxury Escapes Gift Card"
+          alt="Luxury Escapes Logo"
         />
       </picture>
       <div style={style.section}>

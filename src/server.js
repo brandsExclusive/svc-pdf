@@ -9,7 +9,9 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import auth from 'lib-auth-roles';
 
-import App from './pdf/GiftCard/App';
+import AppTaxInvoice from './pdf/TaxInvoice/App';
+import AppGiftCard from './pdf/GiftCard/App';
+
 import { validGiftCard, giftCardMap } from './lib/giftCard';
 import schema from './schemas/giftCard';
 
@@ -38,7 +40,7 @@ exports.getServer = () => {
     next();
   });
 
-  app.options('/api/pdf/gift-cards', (req, res) => {
+  app.options('/api/pdf/tax-invoice', (req, res) => {
     res.status(200).json({
       post: {
         params: {},
@@ -66,7 +68,43 @@ exports.getServer = () => {
       console.error('Missing details', giftCard);
       return res.status(500).send('Missing Gift Card Details');
     }
-    const app = ReactDOMServer.renderToString(<App {...giftCard} />);
+    const app = ReactDOMServer.renderToString(<AppGiftCard {...giftCard} />);
+    fs.readFile(indexFile, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Something went wrong:', err);
+        return res.status(500).send('Error!');
+      }
+      res.type('pdf');
+      return wkhtmltopdf(
+        data.replace('<div id="root"></div>', `${app}`),
+        pdfOptions
+      ).pipe(res);
+    });
+  });
+
+  app.post('/api/pdf/tax-invoice', (req, res) => {
+    const pdfOptions = {
+      orientation: 'portrait',
+      pageSize: 'A4',
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      dpi: 300,
+      encoding: 'utf8',
+      title: 'Luxury Escapes Tax Invoice',
+      debug
+    };
+
+    const indexFile = path.resolve('./index.html');
+    const app = ReactDOMServer.renderToString(
+      <AppTaxInvoice
+        items={req.body.list}
+        date={req.body.date}
+        customer_name={req.body.customer_name}
+        order_currency={req.body.order_currency}
+      />
+    );
     fs.readFile(indexFile, 'utf8', (err, data) => {
       if (err) {
         console.error('Something went wrong:', err);

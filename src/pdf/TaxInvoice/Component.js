@@ -14,6 +14,9 @@ const Component = ({ items, date, customer_name, order_currency }) => {
     return sum + item.total_price;
   }, 0);
 
+  const gstTotalPrice = subTotal / 11;
+  const excGSTTotal = subTotal - gstTotalPrice;
+
   const showGST = order_currency === 'AUD';
 
   return (
@@ -45,7 +48,7 @@ const Component = ({ items, date, customer_name, order_currency }) => {
                 )}
                 {showGST && [
                   <th style={style.th}>
-                    Price exc GST <div style={style.header}>Price exc GST</div>
+                    Price exc GST <div style={style.header}>Price excl GST</div>
                   </th>,
                   <th style={style.th}>
                     GST<div style={style.header}>GST 10%</div>
@@ -58,6 +61,9 @@ const Component = ({ items, date, customer_name, order_currency }) => {
             </thead>
             <tbody>
               {items.map((item, index) => {
+                const gstPrice = item.total_price / 11;
+                const excGSTPrice = item.total_price - gstPrice;
+
                 return (
                   <tr>
                     <td style={style.td}>{index + 1}</td>
@@ -67,14 +73,9 @@ const Component = ({ items, date, customer_name, order_currency }) => {
                       <td style={style.td}>{totalAmount(item.total_price)}</td>
                     )}
                     {showGST && [
-                      <td style={style.td}>{totalAmount(item.total_price)}</td>,
-                      <td style={style.td}>
-                        {' '}
-                        {totalAmount(item.total_price * 0.1)}
-                      </td>,
-                      <td style={style.td}>
-                        {totalAmount(item.total_price * 1.1)}
-                      </td>
+                      <td style={style.td}>{totalAmount(excGSTPrice)}</td>,
+                      <td style={style.td}> {totalAmount(gstPrice)}</td>,
+                      <td style={style.td}>{totalAmount(item.total_price)}</td>
                     ]}
                   </tr>
                 );
@@ -96,15 +97,15 @@ const Component = ({ items, date, customer_name, order_currency }) => {
             {showGST && [
               <tr>
                 <td style={style.tdTotal}>Sub Total(excl GST)</td>
-                <td style={style.tdTotal}>{totalAmount(subTotal)}</td>
+                <td style={style.tdTotal}>{totalAmount(gstTotalPrice)}</td>
               </tr>,
               <tr style={style.totalPriceRow}>
                 <td style={style.tdTotal}>Total GST 10%</td>
-                <td style={style.tdTotal}>{totalAmount(subTotal * 0.1)}</td>
+                <td style={style.tdTotal}>{totalAmount(gstTotalPrice)}</td>
               </tr>,
               <tr>
                 <td style={style.tdTotal}>Invoice Total</td>
-                <td style={style.tdTotal}>{totalAmount(subTotal * 1.1)}</td>
+                <td style={style.tdTotal}>{totalAmount(subTotal)}</td>
               </tr>
             ]}
           </tbody>

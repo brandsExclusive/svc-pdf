@@ -34,6 +34,9 @@ var Component = function Component(_ref) {
     return sum + item.total_price;
   }, 0);
 
+  var gstTotalPrice = subTotal / 11;
+  var excGSTTotal = subTotal - gstTotalPrice;
+
   var showGST = order_currency === 'AUD';
 
   return _react2.default.createElement(
@@ -123,7 +126,7 @@ var Component = function Component(_ref) {
                 _react2.default.createElement(
                   'div',
                   { style: _style2.default.header },
-                  'Price exc GST'
+                  'Price excl GST'
                 )
               ), _react2.default.createElement(
                 'th',
@@ -150,6 +153,9 @@ var Component = function Component(_ref) {
             'tbody',
             null,
             items.map(function (item, index) {
+              var gstPrice = item.total_price / 11;
+              var excGSTPrice = item.total_price - gstPrice;
+
               return _react2.default.createElement(
                 'tr',
                 null,
@@ -176,16 +182,16 @@ var Component = function Component(_ref) {
                 showGST && [_react2.default.createElement(
                   'td',
                   { style: _style2.default.td },
-                  totalAmount(item.total_price)
+                  totalAmount(excGSTPrice)
                 ), _react2.default.createElement(
                   'td',
                   { style: _style2.default.td },
                   ' ',
-                  totalAmount(item.total_price * 0.1)
+                  totalAmount(gstPrice)
                 ), _react2.default.createElement(
                   'td',
                   { style: _style2.default.td },
-                  totalAmount(item.total_price * 1.1)
+                  totalAmount(item.total_price)
                 )]
               );
             })
@@ -228,7 +234,7 @@ var Component = function Component(_ref) {
             _react2.default.createElement(
               'td',
               { style: _style2.default.tdTotal },
-              totalAmount(subTotal)
+              totalAmount(gstTotalPrice)
             )
           ), _react2.default.createElement(
             'tr',
@@ -241,7 +247,7 @@ var Component = function Component(_ref) {
             _react2.default.createElement(
               'td',
               { style: _style2.default.tdTotal },
-              totalAmount(subTotal * 0.1)
+              totalAmount(gstTotalPrice)
             )
           ), _react2.default.createElement(
             'tr',
@@ -254,7 +260,7 @@ var Component = function Component(_ref) {
             _react2.default.createElement(
               'td',
               { style: _style2.default.tdTotal },
-              totalAmount(subTotal * 1.1)
+              totalAmount(subTotal)
             )
           )]
         )

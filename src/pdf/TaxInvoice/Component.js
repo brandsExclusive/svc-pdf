@@ -11,12 +11,11 @@ const Component = ({ items, date, customer_name, order_currency }) => {
 
   const formattedDate = formatDate(new Date(date));
   const subTotal = items.reduce((sum, item) => {
-    return sum + item.total_price;
+    return sum + parseFloat(item.total_price);
   }, 0);
 
-  const gstTotalPrice = subTotal / 11;
-  const excGSTTotal = subTotal - gstTotalPrice;
-
+  const gstTotalPrice = parseFloat(subTotal) / 11;
+  const excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
   const showGST = order_currency === 'AUD';
 
   return (
@@ -97,7 +96,7 @@ const Component = ({ items, date, customer_name, order_currency }) => {
             {showGST && [
               <tr>
                 <td style={style.tdTotal}>Sub Total(excl GST)</td>
-                <td style={style.tdTotal}>{totalAmount(gstTotalPrice)}</td>
+                <td style={style.tdTotal}>{totalAmount(excGSTTotal)}</td>
               </tr>,
               <tr style={style.totalPriceRow}>
                 <td style={style.tdTotal}>Total GST 10%</td>

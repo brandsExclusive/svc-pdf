@@ -11,11 +11,11 @@ const Component = ({ items, date, customer_name, order_currency }) => {
 
   const formattedDate = formatDate(new Date(date));
   const subTotal = items.reduce((sum, item) => {
-    return sum + parseInt(item.total_price);
+    return sum + parseFloat(item.total_price);
   }, 0);
 
-  const gstTotalPrice = parseInt(subTotal) / 11;
-  const excGSTTotal = parseInt(subTotal) - gstTotalPrice;
+  const gstTotalPrice = parseFloat(subTotal) / 11;
+  const excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
   const showGST = order_currency === 'AUD';
 
   return (

@@ -31,11 +31,11 @@ var Component = function Component(_ref) {
 
   var formattedDate = (0, _formatDate.formatDate)(new Date(date));
   var subTotal = items.reduce(function (sum, item) {
-    return sum + parseInt(item.total_price);
+    return sum + parseFloat(item.total_price);
   }, 0);
 
-  var gstTotalPrice = parseInt(subTotal) / 11;
-  var excGSTTotal = parseInt(subTotal) - gstTotalPrice;
+  var gstTotalPrice = parseFloat(subTotal) / 11;
+  var excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
   var showGST = order_currency === 'AUD';
 
   return _react2.default.createElement(

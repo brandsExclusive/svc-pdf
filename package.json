@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/start.js",
-    "build": "babel src --out-dir dist",
+    "docker:build": "babel src --out-dir dist",
     "dev": "yarn dev:build & yarn dev:start",
     "dev:start": "nodemon dist/start.js",
     "dev:build": "babel src --out-dir dist --watch",

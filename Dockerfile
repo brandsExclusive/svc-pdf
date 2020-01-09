@@ -22,7 +22,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build
+RUN yarn docker:build
 
 EXPOSE 8080
 

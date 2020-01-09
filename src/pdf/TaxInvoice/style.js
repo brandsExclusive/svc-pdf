@@ -58,7 +58,7 @@ export default {
   tableTotal: { marginLeft: 'auto' },
   totalPriceRow : {
     borderBottom: '2px solid black'
-  }
+  },
 
   abn: {
     clear: 'left'

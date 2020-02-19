@@ -56,8 +56,6 @@ to deploy we can just run the following JOBS on jenkins
 
 * [TEST](https://jenkins.luxgroup.com/job/release-test-pdf-svc/)
 
-* [UAT](https://jenkins.luxgroup.com/job/release-uat-pdf-svc/)
-
 * [PRODUCTION](https://jenkins.luxgroup.com/job/release-prod-pdf-svc/)
 
 ```

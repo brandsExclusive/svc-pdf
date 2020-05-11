@@ -3,7 +3,13 @@ import React from 'react';
 import style from './style';
 import { formatDynamicAmount } from '../../lib/formatCurrency';
 import { formatDate } from '../../lib/formatDate';
-const Component = ({ items, date, customer_name, order_currency }) => {
+const Component = ({
+  items,
+  date,
+  customer_name,
+  order_currency,
+  billing_country
+}) => {
   const logoId =
     'https://res.cloudinary.com/lux-group/image/upload/v1576811154/LE_Logo_black_jp50wa.png';
   const totalAmount = total_price =>
@@ -16,7 +22,8 @@ const Component = ({ items, date, customer_name, order_currency }) => {
 
   const gstTotalPrice = parseFloat(subTotal) / 11;
   const excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
-  const showGST = order_currency === 'AUD';
+  // don't show gst for international order
+  const showGST = order_currency === 'AUD' && billing_country != 'Australia';
 
   return (
     <div className="root" style={style.root}>

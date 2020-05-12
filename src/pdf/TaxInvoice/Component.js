@@ -23,7 +23,7 @@ const Component = ({
   const gstTotalPrice = parseFloat(subTotal) / 11;
   const excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
   // don't show gst for international order
-  const showGST = order_currency === 'AUD' && billing_country != 'Australia';
+  const showGST = order_currency === 'AUD' && billing_country === 'Australia';
 
   return (
     <div className="root" style={style.root}>

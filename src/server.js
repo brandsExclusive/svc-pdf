@@ -103,6 +103,7 @@ exports.getServer = () => {
         date={req.body.date}
         customer_name={req.body.customer_name}
         order_currency={req.body.order_currency}
+        billing_country={req.body.billing_country}
       />
     );
     fs.readFile(indexFile, 'utf8', (err, data) => {

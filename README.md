@@ -59,6 +59,7 @@ This service is run on AWS Lambda, with api gateway in front of it
 We are using [up](https://up.docs.apex.sh/#introduction) as the abstraction for this
 
 to deploy we can just run the following JOBS on jenkins
+NOTE: be sure to check the build output - the jenkins job passing doesn't mean deploy succeeded.
 
 * [TEST](https://jenkins.luxgroup.com/job/release-test-pdf-svc/)
 

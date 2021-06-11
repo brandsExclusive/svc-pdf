@@ -11,6 +11,6 @@
     "disable": true
   },
   "lambda": {
-    "runtime": "nodejs8.10"
+    "runtime": "nodejs12.x"
   }
 }

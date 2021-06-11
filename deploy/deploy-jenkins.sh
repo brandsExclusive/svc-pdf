@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz --no-clobber
-tar -xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-4/wkhtmltox-0.12.6-4.amazonlinux2_lambda.zip --no-clobber
+unzip -o wkhtmltox-0.12.6-4.amazonlinux2_lambda.zip
 
 . ~/.nvm/nvm.sh
 nvm install

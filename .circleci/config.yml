@@ -38,3 +38,4 @@ workflows:
   build-deploy:
     jobs:
       - build
+        context: LE

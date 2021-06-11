@@ -7,7 +7,7 @@ import path from 'path';
 import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import auth from 'lib-auth-roles';
+import * as auth from '@luxuryescapes/lib-auth-middleware';
 
 import AppTaxInvoice from './pdf/TaxInvoice/App';
 import AppGiftCard from './pdf/GiftCard/App';

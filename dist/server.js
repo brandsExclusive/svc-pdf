@@ -28,9 +28,9 @@ var _server = require('react-dom/server');
 
 var _server2 = _interopRequireDefault(_server);
 
-var _libAuthRoles = require('lib-auth-roles');
+var _libAuthMiddleware = require('@luxuryescapes/lib-auth-middleware');
 
-var _libAuthRoles2 = _interopRequireDefault(_libAuthRoles);
+var auth = _interopRequireWildcard(_libAuthMiddleware);
 
 var _App = require('./pdf/TaxInvoice/App');
 
@@ -46,6 +46,8 @@ var _giftCard2 = require('./schemas/giftCard');
 
 var _giftCard3 = _interopRequireDefault(_giftCard2);
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv-safe').config();
@@ -54,7 +56,7 @@ _wkhtmltopdf2.default.command = process.env.WKHTMLTOPDF_COMMAND;
 
 exports.getServer = function () {
   var app = (0, _express2.default)();
-  var verifyUserSignature = _libAuthRoles2.default.verifyUserSignature({
+  var verifyUserSignature = auth.verifyUserSignature({
     endpoint: process.env.API_HOST
   });
 
@@ -130,7 +132,8 @@ exports.getServer = function () {
       items: req.body.list,
       date: req.body.date,
       customer_name: req.body.customer_name,
-      order_currency: req.body.order_currency
+      order_currency: req.body.order_currency,
+      billing_country: req.body.billing_country
     }));
     _fs2.default.readFile(indexFile, 'utf8', function (err, data) {
       if (err) {

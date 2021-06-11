@@ -4,7 +4,7 @@
   "regions": ["ap-southeast-2"],
   "environment": {
     "APP_ENV": "test",
-    "WKHTMLTOPDF_COMMAND": "./wkhtmltox/bin/wkhtmltopdf",
+    "WKHTMLTOPDF_COMMAND": "./bin/wkhtmltopdf",
     "API_HOST": "https://test-api.luxgroup.com"
   },
   "error_pages": {

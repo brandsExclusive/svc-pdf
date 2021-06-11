@@ -6,7 +6,7 @@ import app from './server';
 import request from 'supertest';
 import sandbox from './test/support/sandbox';
 import chai from './test/support/chai';
-import auth from 'lib-auth-roles';
+import * as auth from '@luxuryescapes/lib-auth-middleware';
 
 const { expect } = chai;
 

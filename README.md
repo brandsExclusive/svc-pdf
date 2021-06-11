@@ -35,6 +35,12 @@ If you just want to do both in one:
 yarn dev
 ```
 
+## Example usage - generate a PDF gift card
+
+```
+$ curl -d '{"gift_card_code":"ABC123","expires_at":"2099-01-01","gift_card_value":"20","currency":"AUD"}' -H "Content-Type: application/json" -H 'Cookie:access_token='"$ACCESS_TOKEN"'' --output ./gift_card.pdf https://${API_BASE_URI}/api/pdf/gift-cards
+```
+
 ## Docker
 
 Dockerfile included for local development.  Refer to https://github.com/brandsExclusive/infra-le-local-dev for instructions with Docker Compose.

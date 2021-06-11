@@ -16,9 +16,11 @@ var _chai = require('./test/support/chai');
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _libAuthRoles = require('lib-auth-roles');
+var _libAuthMiddleware = require('@luxuryescapes/lib-auth-middleware');
 
-var _libAuthRoles2 = _interopRequireDefault(_libAuthRoles);
+var auth = _interopRequireWildcard(_libAuthMiddleware);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34,7 +36,7 @@ var testServer = null;
 describe('Server', function () {
   describe('Gift cards route - /api/pdf/gift-cards', function () {
     beforeEach(function () {
-      _sandbox2.default.stub(_libAuthRoles2.default, 'verifyUserSignature').callsFake(function () {
+      _sandbox2.default.stub(auth, 'verifyUserSignature').callsFake(function () {
         return function (req, res, next) {
           next();
         };

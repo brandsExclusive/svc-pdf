@@ -22,7 +22,8 @@ var Component = function Component(_ref) {
   var items = _ref.items,
       date = _ref.date,
       customer_name = _ref.customer_name,
-      order_currency = _ref.order_currency;
+      order_currency = _ref.order_currency,
+      billing_country = _ref.billing_country;
 
   var logoId = 'https://res.cloudinary.com/lux-group/image/upload/v1576811154/LE_Logo_black_jp50wa.png';
   var totalAmount = function totalAmount(total_price) {
@@ -36,7 +37,8 @@ var Component = function Component(_ref) {
 
   var gstTotalPrice = parseFloat(subTotal) / 11;
   var excGSTTotal = parseFloat(subTotal) - gstTotalPrice;
-  var showGST = order_currency === 'AUD';
+  // don't show gst for international order
+  var showGST = order_currency === 'AUD' && billing_country === 'Australia';
 
   return _react2.default.createElement(
     'div',

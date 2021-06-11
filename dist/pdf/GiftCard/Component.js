@@ -32,11 +32,7 @@ var Component = function Component(_ref) {
       _react2.default.createElement(
         'picture',
         null,
-        _react2.default.createElement('img', {
-          style: _style2.default.banner,
-          src: bannerId,
-          alt: 'Luxury Escapes Logo'
-        })
+        _react2.default.createElement('img', { style: _style2.default.banner, src: bannerId, alt: 'Luxury Escapes Logo' })
       ),
       _react2.default.createElement(
         'div',

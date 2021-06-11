@@ -12,10 +12,6 @@ var _Component = require('./Component');
 
 var _Component2 = _interopRequireDefault(_Component);
 
-var _formatCurrency = require('../../lib/formatCurrency');
-
-var _formatDate = require('../../lib/formatDate');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(props) {
@@ -23,7 +19,8 @@ var App = function App(props) {
     items: props.items,
     date: props.date,
     customer_name: props.customer_name,
-    order_currency: props.order_currency
+    order_currency: props.order_currency,
+    billing_country: props.billing_country
   });
 };
 

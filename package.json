@@ -17,6 +17,7 @@
     "js:lint:fix": "APP_ENV=test ./node_modules/eslint/bin/eslint.js --fix src"
   },
   "dependencies": {
+    "@luxuryescapes/lib-auth-middleware": "0.5.2",
     "body-parser": "^1.18.3",
     "currency-formatter": "^1.5.3",
     "dotenv-safe": "^6.1.0",

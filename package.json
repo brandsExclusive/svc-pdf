@@ -21,7 +21,6 @@
     "currency-formatter": "^1.5.3",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
-    "lib-auth-roles": "git+https://github.com/brandsExclusive/lib-auth-roles.git#0.2.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3",

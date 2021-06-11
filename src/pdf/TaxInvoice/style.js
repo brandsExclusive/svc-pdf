@@ -56,7 +56,7 @@ export default {
   },
 
   tableTotal: { marginLeft: 'auto' },
-  totalPriceRow : {
+  totalPriceRow: {
     borderBottom: '2px solid black'
   },
 

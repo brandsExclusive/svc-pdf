@@ -12,11 +12,7 @@ const Component = ({ personalisation, code, expiry, amount }) => (
   <div className="root" style={style.root}>
     <div style={style.body}>
       <picture>
-        <img
-          style={style.banner}
-          src={bannerId}
-          alt="Luxury Escapes Logo"
-        />
+        <img style={style.banner} src={bannerId} alt="Luxury Escapes Logo" />
       </picture>
       <div style={style.section}>
         <div style={style.amount}>{amount}</div>
